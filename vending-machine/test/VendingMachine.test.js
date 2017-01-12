@@ -1,8 +1,8 @@
 "use strict"
 const expect = require('chai').expect;
 
-const Items = require("../app/Items")
-const VendingMachine = require("../app/VendingMachine");
+const Items = require("../src/app/Items")
+const VendingMachine = require("../src/app/VendingMachine");
 
  describe('Vending Machine',() => {
    beforeEach(() => {

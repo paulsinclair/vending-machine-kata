@@ -7,6 +7,15 @@ function returnCoin(coin, coinReturn){
   return coinReturn
 }
 
+function dispenseChange(machine){
+   var coinReturn = machine.coinReturn
+   var change = machine.change
+
+   change.forEach((coin) =>{returnCoin(coin, coinReturn)})
+
+   machine.change = []
+   machine.coinReturn = coinReturn
+}
 
 function isValidCoin(coin) {
   if (validCoinAmounts[coin]) return true;

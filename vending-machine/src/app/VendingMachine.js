@@ -55,9 +55,11 @@ function  pressCandy() {
   }
 
 function  pressButton(machine) {
+    machine.change = []
     Items.dispenseItem(machine)
     Display.updateDisplay(machine)
     machine.change.forEach((coin) =>{Coins.returnCoin(coin,machine.coinReturn)})
+    machine.change = []
 }
 
 module.exports = {pressReturnCoins: pressReturnCoins, insertCoin: insertCoin, coinReturn: coinReturn, insertedCoinAmount: insertedCoinAmount,  totalMoneyInserted: totalMoneyInserted, returnedCoins: returnedCoins, display: display, pressCola: pressCola, pressChips: pressChips, dispenser: dispenser, pressCandy:pressCandy}

@@ -1,7 +1,7 @@
 "use strict"
 
 const expect = require("Chai").expect
-const Calculator = require("../app/VendingCalculator")
+const Calculator = require("../src/app/VendingCalculator")
 
 describe("Calculator",()=>{
     var item;
