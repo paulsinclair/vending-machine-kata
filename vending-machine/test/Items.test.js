@@ -4,9 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const expect = require('chai').expect;
-
-const Items = require("../app/Items");
-var machine = require("../app/VendingMachine");
+const Items = require("../src/app/Items");
+var machine = require("../src/app/VendingMachine");
 
 
 describe("Items",()=>{
