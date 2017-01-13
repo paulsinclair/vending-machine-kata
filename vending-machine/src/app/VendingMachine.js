@@ -1,4 +1,3 @@
-"use strict"
 
 const Display = require("../app/VendingDisplay");
 const updateTotal = require("../app/VendingCalculator").updateTotal;
@@ -10,17 +9,17 @@ var coinReturn =[];
 var display = Display.INSERTCOINS
 var dispenser;
 var insertedCoinAmount;
-var item;
+//var item;
 
 function insertCoin (coin, machine) {
     if (Coins.isValidCoin(coin)) {
-      acceptCoin(this, coin)
-      updateTotal(this)
+      acceptCoin(machine, coin)
+      updateTotal(machine)
     }
     else {
       Coins.returnCoin(coin,machine.coinReturn)
     }
-      Display.updateDisplay(this)
+      Display.updateDisplay(machine)
   }
 
 function  returnedCoins() {
@@ -36,30 +35,29 @@ function  acceptCoin(machine, coin) {
 function pressReturnCoins(machine){
   machine.acceptedCoins.forEach((coin) =>{Coins.returnCoin(coin,machine.coinReturn)})
   machine.totalMoneyInserted = 0
-  Display.updateDisplay(this)
+  Display.updateDisplay(machine)
 }
 
-function  pressCola() {
-    this.item = Items.cola
-    pressButton(this)
+function  pressCola(machine) {
+    machine.item = Items.cola
+    pressButton(machine)
   }
 
-function  pressChips() {
-    this.item = Items.chips
-    pressButton(this)
+function  pressChips(machine) {
+    machine.item = Items.chips
+    pressButton(machine)
   }
 
-function  pressCandy() {
-    this.item = Items.candy
-    pressButton(this)
+function  pressCandy(machine) {
+    machine.item = Items.candy
+    pressButton(machine)
   }
 
 function  pressButton(machine) {
     machine.change = []
     Items.dispenseItem(machine)
-    Display.updateDisplay(machine)
     machine.change.forEach((coin) =>{Coins.returnCoin(coin,machine.coinReturn)})
     machine.change = []
 }
 
-module.exports = {pressReturnCoins: pressReturnCoins, insertCoin: insertCoin, coinReturn: coinReturn, insertedCoinAmount: insertedCoinAmount,  totalMoneyInserted: totalMoneyInserted, returnedCoins: returnedCoins, display: display, pressCola: pressCola, pressChips: pressChips, dispenser: dispenser, pressCandy:pressCandy}
+module.exports = {pressButton: pressButton, pressReturnCoins: pressReturnCoins, insertCoin: insertCoin, coinReturn: coinReturn, insertedCoinAmount: insertedCoinAmount,  totalMoneyInserted: totalMoneyInserted, returnedCoins: returnedCoins, display: display, pressCola: pressCola, pressChips: pressChips, dispenser: dispenser, pressCandy:pressCandy}

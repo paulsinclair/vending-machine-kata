@@ -1,4 +1,3 @@
-"use strict"
 
 const coin = require("../app/Coins").validCoinAmounts
 
@@ -30,7 +29,7 @@ function dispenseChangeByDenomination(counter, denomination) {
 }
   function addCoinToChange(counter, denomination) {
     counter.change.push(denomination)
-    counter.changeToGive = counter.changeToGive - coin[denomination]
+    counter.changeToGive -=  coin[denomination]
   }
 
   function removeCoinFromFloat(counter, denomination) {

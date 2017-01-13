@@ -5,7 +5,8 @@ import ReactDOM from 'react-dom';
 
 const expect = require('chai').expect;
 const Items = require("../src/app/Items");
-var machine = require("../src/app/VendingMachine");
+const VendingMachine = require("../src/app/VendingMachine");
+var machine = {};
 
 
 describe("Items",()=>{
@@ -57,7 +58,7 @@ it ("Updates display with PRICE of item when item fails to dispense.",()=>{
 
   it("Does dispense an item when there is exactly enough money",()=>{
     item.price = 0.05;
-    machine.insertCoin("Nickel")
+    VendingMachine.insertCoin("Nickel",machine)
 
     Items.dispenseItem(machine, item);
 
@@ -67,13 +68,13 @@ it ("Updates display with PRICE of item when item fails to dispense.",()=>{
 
   it("Does dispense an item when there is more than enough money",()=>{
     item.price = 1;
-    machine.insertCoin("Quarter")
-    machine.insertCoin("Quarter")
-    machine.insertCoin("Quarter")
-    machine.insertCoin("Quarter")
-    machine.insertCoin("Quarter")
-    machine.insertCoin("Quarter")
-    machine.insertCoin("Quarter")
+    VendingMachine.insertCoin("Quarter",machine)
+    VendingMachine.insertCoin("Quarter",machine)
+    VendingMachine.insertCoin("Quarter",machine)
+    VendingMachine.insertCoin("Quarter",machine)
+    VendingMachine.insertCoin("Quarter",machine)
+    VendingMachine.insertCoin("Quarter",machine)
+    VendingMachine.insertCoin("Quarter",machine)
 
     Items.dispenseItem(machine, item);
 
@@ -85,7 +86,7 @@ it("Updates Display to THANK YOU after an item is dispensed.",()=>{
   expect(machine.display).to.eql("THANK YOU")
 })
 it("Updates Total Amount to zero after an item is dispensed.",()=>{
-  machine.insertCoin("Quarter")
+  VendingMachine.insertCoin("Quarter",machine)
   Items.dispenseItem(machine, item);
 
 

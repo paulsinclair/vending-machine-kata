@@ -6,30 +6,33 @@ const {
 } = ReactNative;
 
 import VendingMachine from '../app/VendingMachine.js'
-const insertCoin = VendingMachine.insertCoin
+const pressButton = VendingMachine.pressButton
 
-class CoinSlot extends Component {
+class Item extends Component {
 componentWillMount(){
-this.state = {coin: this.props.coin, machine: this.props.machine}
+this.state = {machine: this.props.machine}
 }
   render() {
+    var item = this.props.item
     return (
-      <div className="CoinSlot">
+      <div className="Item">
               <View style={{
                 flex: 1,
-                flexDirection: 'column',
+                flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-                <Button onPress={()=>{this.handleClick()}} title={"Insert " + this.props.coin}/>
+                <Button onPress={()=>{this.handleClick()}} title={"Buy " + item.name}/>
                </View>
       </div>
     );
   }
   handleClick = function () {
-   insertCoin(this.props.coin,this.state.machine)
-   this.props.onButtonClick(this.state.machine)
+   var machine = this.state.machine
+   machine.item = this.props.item
+   pressButton(this.state.machine)
+   this.props.onButtonClick(machine)
   }
 }
 
-export default CoinSlot;
+export default Item;

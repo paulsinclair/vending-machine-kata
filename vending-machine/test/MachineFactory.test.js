@@ -19,5 +19,8 @@ describe('Machine Factory',() => {
     it("which has zero money inserted",()=>{
       expect(machine.totalMoneyInserted).to.equal(0)
     })
+    it("which has an empty float",()=>{
+      expect(machine.float).to.eql([])
+    } )
  })
 })

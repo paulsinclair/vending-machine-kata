@@ -1,4 +1,3 @@
-"use strict"
 var validCoinAmounts = {"Dime": 0.10, "Quarter": 0.25, "Nickel": 0.05}
 
 function returnCoin(coin, coinReturn){
@@ -23,4 +22,4 @@ function isValidCoin(coin) {
 }
 
 
-module.exports = {isValidCoin: isValidCoin, validCoinAmounts: validCoinAmounts, returnCoin: returnCoin}
+module.exports = {isValidCoin: isValidCoin, validCoinAmounts: validCoinAmounts, returnCoin: returnCoin, dispenseChange: dispenseChange}

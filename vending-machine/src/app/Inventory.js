@@ -1,4 +1,3 @@
-"use strict"
 
   function itemInStock(machine) {
     if (machine === undefined || machine === null) return false
@@ -8,4 +7,11 @@
     return stock.filter((stockItem)=>{return (stockItem === chosenItem) }).length > 0;
     }
 
-module.exports = {itemInStock: itemInStock}
+
+   function fill(machine,item){
+     var stock = machine.stock || []
+     stock.push(item)
+     machine.stock = stock
+    }
+
+module.exports = {itemInStock: itemInStock, fill: fill}

@@ -2,6 +2,7 @@
 const expect = require('chai').expect;
 
 const ItemInStock = require("../src/app/Inventory").itemInStock
+const Fill = require("../src/app/Inventory").fill
 
 const ITEM = {name: "Item Name", price: 0.00}
 
@@ -36,6 +37,13 @@ describe("Inventory",()=>{
     it("Returns False if the machine item is undefined and stock contains undefined",()=>{
       machine.item = undefined
       expect (ItemInStock(machine)).to.equal(false)
+  })
+ })
+ describe("Fill ",()=>{
+  it("adds items to the stock",()=>{
+   machine.stock = []
+   Fill(machine,ITEM)
+   expect(machine.stock).to.include(ITEM)
   })
  })
 })

@@ -1,4 +1,3 @@
-"use strict"
 const Display = require("../app/VendingDisplay")
 const Calculator = require("../app/VendingCalculator")
 const Inventory = require("../app/Inventory")

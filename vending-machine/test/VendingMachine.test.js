@@ -3,146 +3,151 @@ const expect = require('chai').expect;
 
 const Items = require("../src/app/Items")
 const VendingMachine = require("../src/app/VendingMachine");
+const updateDisplay = require("../src/app/VendingDisplay").updateDisplay
+var machine = {}
 
  describe('Vending Machine',() => {
    beforeEach(() => {
-    VendingMachine.totalMoneyInserted = 0;
-    VendingMachine.display = "INSERT COINS";
-    VendingMachine.coinReturn = [];
-    VendingMachine.stock = [Items.cola, Items.chips, Items.candy]
-     VendingMachine.float = ["Nickel","Dime","Dime","Quarter"]
+    machine.totalMoneyInserted = 0;
+    machine.display = "INSERT COINS";
+    machine.coinReturn = [];
+    machine.stock = [Items.cola, Items.chips, Items.candy]
+    machine.float = ["Nickel","Dime","Dime","Quarter"]
    })
   describe("when no coins are inserted",()=>{
     it("displays INSERT COINS",()=>{
-      expect (VendingMachine.display).to.equal("INSERT COINS")
+      expect (machine.display).to.equal("INSERT COINS")
   })
 })
    describe("when given a valid coin", () => {
      it("Adds a nickel to the total", () => {
-       VendingMachine.insertCoin("Nickel");
+       VendingMachine.insertCoin("Nickel",machine);
 
-     expect (VendingMachine.display).to.equal("$0.05")
+     expect (machine.display).to.equal("$0.05")
     })
   it("Adds multiple nickels to the total", () => {
-       VendingMachine.insertCoin("Nickel");
-       VendingMachine.insertCoin("Nickel");
-       VendingMachine.insertCoin("Nickel");
-       VendingMachine.insertCoin("Nickel");
-      expect (VendingMachine.display).to.equal("$0.20")
+     VendingMachine.insertCoin("Nickel",machine);
+     VendingMachine.insertCoin("Nickel",machine);
+     VendingMachine.insertCoin("Nickel",machine);
+     VendingMachine.insertCoin("Nickel",machine);
+
+     expect (machine.display).to.equal("$0.20")
      })
   it("Adds a dime to the total", () => {
-       VendingMachine.insertCoin("Dime");
+     VendingMachine.insertCoin("Dime",machine);
 
-     expect (VendingMachine.display).to.equal("$0.10")
+     expect (machine.display).to.equal("$0.10")
     })
    it("Adds a quarter to the total", () => {
-       VendingMachine.insertCoin("Quarter");
+      VendingMachine.insertCoin("Quarter",machine);
 
-     expect (VendingMachine.display).to.equal("$0.25")
+      expect (machine.display).to.equal("$0.25")
     })
   })
   describe("when given an inValid coin", () => {
    it("Does not update total",()=>{
-   VendingMachine.insertCoin("Penny",VendingMachine);
+   VendingMachine.insertCoin("Penny",machine);
   expect (VendingMachine.display).to.equal("INSERT COINS")
 })
 it("Puts the coin in the reject tray",()=>{
-  VendingMachine.coinReturn = ["Yen"];
-   VendingMachine.insertCoin("Penny", VendingMachine);
-  expect(VendingMachine.returnedCoins()).to.include("Penny")
+   machine.coinReturn = ["Yen"];
+   VendingMachine.insertCoin("Penny", machine);
+   expect(machine.coinReturn).to.include("Penny")
 })
 it("Puts multiple coins in the reject tray",()=>{
-   VendingMachine.insertCoin("Penny", VendingMachine);
-   VendingMachine.insertCoin("Peso",VendingMachine);
-   VendingMachine.insertCoin("Yen",VendingMachine);
-  expect(VendingMachine.coinReturn).to.include("Penny")
-  expect(VendingMachine.returnedCoins()).to.include("Peso")
-  expect(VendingMachine.returnedCoins()).to.include("Yen")
-  expect(VendingMachine.returnedCoins().length).to.equal(3)
+   VendingMachine.insertCoin("Penny", machine);
+   VendingMachine.insertCoin("Peso",machine);
+   VendingMachine.insertCoin("Yen",machine);
+   expect(machine.coinReturn).to.include("Penny")
+   expect(machine.coinReturn).to.include("Peso")
+   expect(machine.coinReturn).to.include("Yen")
+   expect(machine.coinReturn.length).to.equal(3)
 })
 })
 describe("Display ",()=>{
   it("Shows 'INSERT COINS' when the amount is zero",()=>{
-    expect(VendingMachine.display).to.eql("INSERT COINS")
+    expect(machine.display).to.eql("INSERT COINS")
 })
   it("Shows the correct amount when the amount is greater than zero",()=>{
-    VendingMachine.insertCoin("Quarter");
-    expect(VendingMachine.display).to.eql("$0.25")
+    VendingMachine.insertCoin("Quarter",machine);
+    expect(machine.display).to.eql("$0.25")
   })
 })
  describe("Dispenser",()=>{
    it("Does not dispense cola when there are no coins inserted",()=>{
-     VendingMachine.pressCola();
-     expect(VendingMachine.dispenser).to.eql("empty");
-     expect(VendingMachine.display).to.eql("INSERT COINS")
+     VendingMachine.pressCola(machine);
+     updateDisplay(machine)
+     expect(machine.dispenser).to.eql("empty");
+     expect(machine.display).to.eql("INSERT COINS")
     })
 it("Dispense Cola if there is enough money inserted",()=>{
-    VendingMachine.insertCoin("Quarter");
-    VendingMachine.insertCoin("Quarter");
-    VendingMachine.insertCoin("Quarter");
-    VendingMachine.insertCoin("Quarter");
-    VendingMachine.pressCola();
-    expect(VendingMachine.dispenser).to.eql("Cola");
-   expect(VendingMachine.display).to.eql("INSERT COINS")
+    VendingMachine.insertCoin("Quarter",machine);
+    VendingMachine.insertCoin("Quarter",machine);
+    VendingMachine.insertCoin("Quarter",machine);
+    VendingMachine.insertCoin("Quarter",machine);
+    VendingMachine.pressCola(machine);
+    updateDisplay(machine);
+    expect(machine.dispenser).to.eql("Cola");
+   expect(machine.display).to.eql("INSERT COINS")
 })
 it("Does not dispense Cola if there was less than $1.00 inserted",()=>{
-    VendingMachine.insertCoin("Quarter");
-    VendingMachine.insertCoin("Quarter");
-    VendingMachine.insertCoin("Quarter");
-    VendingMachine.pressCola();
-    expect(VendingMachine.dispenser).to.eql("empty");
+    VendingMachine.insertCoin("Quarter",machine);
+    VendingMachine.insertCoin("Quarter",machine);
+    VendingMachine.insertCoin("Quarter",machine);
+    VendingMachine.pressCola(machine);
+    expect(machine.dispenser).to.eql("empty");
 
 })
 it("Dispenses Chips when the Chips button is pressed and there is $0.50 inserted",()=>{
-  VendingMachine.insertCoin("Quarter");
-  VendingMachine.insertCoin("Quarter");
-  VendingMachine.pressChips();
-  expect(VendingMachine.dispenser).to.eql("Chips");
+  VendingMachine.insertCoin("Quarter",machine);
+  VendingMachine.insertCoin("Quarter",machine);
+  VendingMachine.pressChips(machine);
+  expect(machine.dispenser).to.eql("Chips");
   })
 it("Dispenses Chips and gives change when the Chips button is pressed and there is more than $0.50 inserted",()=>{
-  VendingMachine.insertCoin("Quarter");
-  VendingMachine.insertCoin("Quarter");
-  VendingMachine.insertCoin("Quarter");
-  VendingMachine.pressChips();
-  expect(VendingMachine.dispenser).to.eql("Chips",VendingMachine);
-  expect(VendingMachine.returnedCoins()).to.include("Quarter")
+  VendingMachine.insertCoin("Quarter",machine);
+  VendingMachine.insertCoin("Quarter",machine);
+  VendingMachine.insertCoin("Quarter",machine);
+  VendingMachine.pressChips(machine);
+  expect(machine.dispenser).to.eql("Chips",machine);
+  expect(machine.coinReturn).to.include("Quarter")
   })
 it("Dispenses Candy when the Candy button is pressed and there is $0.65 inserted",()=>{
-  VendingMachine.insertCoin("Quarter");
-  VendingMachine.insertCoin("Quarter");
-  VendingMachine.insertCoin("Nickel");
-  VendingMachine.insertCoin("Dime");
-  VendingMachine.pressCandy();
-  expect(VendingMachine.dispenser).to.eql("Candy");
+  VendingMachine.insertCoin("Quarter",machine);
+  VendingMachine.insertCoin("Quarter",machine);
+  VendingMachine.insertCoin("Nickel",machine);
+  VendingMachine.insertCoin("Dime",machine);
+  VendingMachine.pressCandy(machine);
+  expect(machine.dispenser).to.eql("Candy");
   })
    it("Does not dispense Candy when the Candy is out of stock",()=>{
-  VendingMachine.stock = []
-  VendingMachine.insertCoin("Quarter");
-  VendingMachine.insertCoin("Quarter");
-  VendingMachine.insertCoin("Nickel");
-  VendingMachine.insertCoin("Dime");
-  VendingMachine.pressCandy();
-  expect(VendingMachine.dispenser).to.eql("empty");
+  machine.stock = []
+  VendingMachine.insertCoin("Quarter",machine);
+  VendingMachine.insertCoin("Quarter",machine);
+  VendingMachine.insertCoin("Nickel",machine);
+  VendingMachine.insertCoin("Dime",machine);
+  VendingMachine.pressCandy(machine);
+  expect(machine.dispenser).to.eql("empty");
   })
 })
    describe("Returns ",()=>{
      it("Quarters",()=>{
-     VendingMachine.insertCoin("Quarter");
-     VendingMachine.pressReturnCoins(VendingMachine)
-     expect(VendingMachine.returnedCoins()).to.include("Quarter")
-     expect(VendingMachine.display).to.eql("INSERT COINS")
+     VendingMachine.insertCoin("Quarter",machine);
+     VendingMachine.pressReturnCoins(machine)
+     expect(machine.coinReturn).to.include("Quarter")
+     expect(machine.display).to.eql("INSERT COINS")
      })
      it("Nickels",()=>{
-     VendingMachine.insertCoin("Nickel");
-     VendingMachine.pressReturnCoins(VendingMachine)
-     expect(VendingMachine.returnedCoins()).to.include("Nickel")
-     expect(VendingMachine.display).to.eql("INSERT COINS")
+     VendingMachine.insertCoin("Nickel",machine);
+     VendingMachine.pressReturnCoins(machine)
+     expect(machine.coinReturn).to.include("Nickel")
+     expect(machine.display).to.eql("INSERT COINS")
      })
      it("Dimes",()=>{
-     VendingMachine.insertCoin("Dime");
-     VendingMachine.pressReturnCoins(VendingMachine)
-     expect(VendingMachine.returnedCoins()).to.include("Dime")
-     expect(VendingMachine.display).to.eql("INSERT COINS")
+     VendingMachine.insertCoin("Dime",machine);
+     VendingMachine.pressReturnCoins(machine)
+     expect(machine.coinReturn).to.include("Dime")
+     expect(machine.display).to.eql("INSERT COINS")
      })
    })
 })

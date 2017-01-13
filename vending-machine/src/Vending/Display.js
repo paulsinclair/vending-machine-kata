@@ -4,7 +4,7 @@ class Display extends Component {
   render() {
     return (
       <div className="Display">
-   Display {this.props.displayText}
+   {this.props.displayText}
       </div>
     );
   }

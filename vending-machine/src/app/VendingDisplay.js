@@ -1,4 +1,3 @@
-"use strict"
 
 const DEFAULT = "INSERT COINS"
 const EXACTCHANGE = "EXACT CHANGE ONLY"
