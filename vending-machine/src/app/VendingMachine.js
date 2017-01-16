@@ -35,6 +35,7 @@ function  acceptCoin(machine, coin) {
 function pressReturnCoins(machine){
   machine.acceptedCoins.forEach((coin) =>{Coins.returnCoin(coin,machine.coinReturn)})
   machine.totalMoneyInserted = 0
+  machine.acceptedCoins = []
   Display.updateDisplay(machine)
 }
 

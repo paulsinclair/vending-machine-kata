@@ -1,6 +1,8 @@
 "use strict"
 const expect = require('chai').expect;
 const createMachine = require("../src/app/MachineFactory").createMachine;
+const Items = require("../src/app/Items")
+
 var machine
 
 describe('Machine Factory',() => {
@@ -22,5 +24,10 @@ describe('Machine Factory',() => {
     it("which has an empty float",()=>{
       expect(machine.float).to.eql([])
     } )
+    it("which has an empty acceptedCoins",()=>{
+    expect(machine.acceptedCoins).to.eql([])})
+    it(" dispenser has the empty item",()=>{
+    expect(machine.dispenser).to.eql(Items.empty)
+    })
  })
 })

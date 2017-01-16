@@ -4,9 +4,10 @@ const Inventory = require("../app/Inventory")
 
 const itemInStock = Inventory.itemInStock
 
-const cola = {name: "Cola", price: 1.00}
-const chips = {name: "Chips", price: 0.50}
-const candy = {name: "Candy", price: 0.65}
+const cola = {name: "Cola", price: 1.00, image: "cola.png"}
+const chips = {name: "Chips", price: 0.50, image: "chips.png"}
+const candy = {name: "Candy", price: 0.65, image: "candy.png"}
+const empty = {name: 'Empty, price: 0, image: "empty.png'}
 
 function dispenseItemIfEnoughMoneyIsInserted(machine) {
   var item = machine.item
@@ -39,4 +40,4 @@ function dispenseItemIfEnoughMoneyIsInserted(machine) {
     machine.totalMoneyInserted = 0;
   }
 
-module.exports = {dispenseItem: dispenseItemIfEnoughMoneyIsInserted, cola: cola, chips: chips, candy: candy }
+module.exports = {dispenseItem: dispenseItemIfEnoughMoneyIsInserted, cola: cola, chips: chips, candy: candy, empty: empty }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { View } from 'react-native';
 
 import CoinSlot from './CoinSlot.js'
 
@@ -18,7 +19,9 @@ this.state = {coinReturn: this.props.coinReturn}
    })
    return (
     <div className="CoinSlots">
-     {slots}
+     <View style={{flex: 1,flexDirection: 'row',justifyContent: 'center', alignItems: 'center',}}>
+      {slots}
+     </View>
     </div>
    )}
 }

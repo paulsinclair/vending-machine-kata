@@ -22,7 +22,7 @@ this.state = {machine: this.props.machine}
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-                <Button onPress={()=>{this.handleClick()}} title={"Buy " + item.name}/>
+                <Button color="deepskyblue" onPress={()=>{this.handleClick()}} title={"Buy " + item.name}/>
                </View>
       </div>
     );
