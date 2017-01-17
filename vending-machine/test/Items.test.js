@@ -23,7 +23,7 @@ describe("Items",()=>{
   it ("Dispenses an Item Whe button pressed",()=>{
   Items.dispenseItem(machine, item);
 
-  expect(machine.dispenser).to.eql("Item")
+  expect(machine.dispenser).to.eql(item)
   })
 
   it("Does not dispense an item when there is not enough money",()=>{
@@ -31,7 +31,7 @@ describe("Items",()=>{
 
     Items.dispenseItem(machine, item);
 
-    expect(machine.dispenser).to.eql("empty")
+    expect(machine.dispenser).to.eql(Items.empty)
 })
 it ("Updates display with PRICE of item when item fails to dispense.",()=>{
   item.price = 1;
@@ -53,7 +53,7 @@ it ("Updates display with PRICE of item when item fails to dispense.",()=>{
   Items.dispenseItem(machine, item);
 
   expect(machine.display).to.eql("OUT OF STOCK")
-  expect(machine.dispenser).to.eql("empty")
+  expect(machine.dispenser).to.eql(Items.empty)
   })
 
   it("Does dispense an item when there is exactly enough money",()=>{
@@ -62,7 +62,7 @@ it ("Updates display with PRICE of item when item fails to dispense.",()=>{
 
     Items.dispenseItem(machine, item);
 
-    expect(machine.dispenser).to.eql("Item")
+    expect(machine.dispenser).to.eql(item)
 
 })
 
@@ -78,7 +78,7 @@ it ("Updates display with PRICE of item when item fails to dispense.",()=>{
 
     Items.dispenseItem(machine, item);
 
-    expect(machine.dispenser).to.eql("Item")
+    expect(machine.dispenser).to.eql(item)
 })
 it("Updates Display to THANK YOU after an item is dispensed.",()=>{
   Items.dispenseItem(machine, item);

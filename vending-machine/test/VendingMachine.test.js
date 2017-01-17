@@ -77,7 +77,7 @@ describe("Display ",()=>{
    it("Does not dispense cola when there are no coins inserted",()=>{
      VendingMachine.pressCola(machine);
      updateDisplay(machine)
-     expect(machine.dispenser).to.eql("empty");
+     expect(machine.dispenser).to.eql(Items.empty);
      expect(machine.display).to.eql("INSERT COINS")
     })
 it("Dispense Cola if there is enough money inserted",()=>{
@@ -87,7 +87,7 @@ it("Dispense Cola if there is enough money inserted",()=>{
     VendingMachine.insertCoin("Quarter",machine);
     VendingMachine.pressCola(machine);
     updateDisplay(machine);
-    expect(machine.dispenser).to.eql("Cola");
+    expect(machine.dispenser).to.eql(Items.cola);
    expect(machine.display).to.eql("INSERT COINS")
 })
 it("Does not dispense Cola if there was less than $1.00 inserted",()=>{
@@ -95,21 +95,21 @@ it("Does not dispense Cola if there was less than $1.00 inserted",()=>{
     VendingMachine.insertCoin("Quarter",machine);
     VendingMachine.insertCoin("Quarter",machine);
     VendingMachine.pressCola(machine);
-    expect(machine.dispenser).to.eql("empty");
+    expect(machine.dispenser).to.eql(Items.empty);
 
 })
 it("Dispenses Chips when the Chips button is pressed and there is $0.50 inserted",()=>{
   VendingMachine.insertCoin("Quarter",machine);
   VendingMachine.insertCoin("Quarter",machine);
   VendingMachine.pressChips(machine);
-  expect(machine.dispenser).to.eql("Chips");
+  expect(machine.dispenser).to.eql(Items.chips);
   })
 it("Dispenses Chips and gives change when the Chips button is pressed and there is more than $0.50 inserted",()=>{
   VendingMachine.insertCoin("Quarter",machine);
   VendingMachine.insertCoin("Quarter",machine);
   VendingMachine.insertCoin("Quarter",machine);
   VendingMachine.pressChips(machine);
-  expect(machine.dispenser).to.eql("Chips",machine);
+  expect(machine.dispenser).to.eql(Items.chips,machine);
   expect(machine.coinReturn).to.include("Quarter")
   })
 it("Dispenses Candy when the Candy button is pressed and there is $0.65 inserted",()=>{
@@ -118,7 +118,7 @@ it("Dispenses Candy when the Candy button is pressed and there is $0.65 inserted
   VendingMachine.insertCoin("Nickel",machine);
   VendingMachine.insertCoin("Dime",machine);
   VendingMachine.pressCandy(machine);
-  expect(machine.dispenser).to.eql("Candy");
+  expect(machine.dispenser).to.eql(Items.candy);
   })
    it("Does not dispense Candy when the Candy is out of stock",()=>{
   machine.stock = []
@@ -127,7 +127,7 @@ it("Dispenses Candy when the Candy button is pressed and there is $0.65 inserted
   VendingMachine.insertCoin("Nickel",machine);
   VendingMachine.insertCoin("Dime",machine);
   VendingMachine.pressCandy(machine);
-  expect(machine.dispenser).to.eql("empty");
+  expect(machine.dispenser).to.eql(Items.empty);
   })
 })
    describe("Returns ",()=>{

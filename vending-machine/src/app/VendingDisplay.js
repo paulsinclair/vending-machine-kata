@@ -22,4 +22,4 @@ function updateDisplayWithMessage(machine, message){
   machine.display = message
 }
 
-module.exports = {updateDisplay: updateDisplay, updateDisplayWithPrice: updateDisplayWithPrice, updateDisplayWithMessage: updateDisplayWithMessage, INSERTCOINS: DEFAULT}
+module.exports = {convertToCurrency: convertToCurrency, updateDisplay: updateDisplay, updateDisplayWithPrice: updateDisplayWithPrice, updateDisplayWithMessage: updateDisplayWithMessage, INSERTCOINS: DEFAULT}

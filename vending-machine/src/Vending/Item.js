@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import VendingDisplay from '../app/VendingDisplay.js'
+const convertToCurrency = VendingDisplay.convertToCurrency
 const ReactNative = require('react-native');
 const {
   Button,
@@ -22,7 +24,7 @@ this.state = {machine: this.props.machine}
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-                <Button color="deepskyblue" onPress={()=>{this.handleClick()}} title={"Buy " + item.name}/>
+                <Button color="deepskyblue" onPress={()=>{this.handleClick()}} title={"Buy " + item.name + " " + convertToCurrency(item.price)}/>
                </View>
       </div>
     );
