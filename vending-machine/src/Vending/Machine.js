@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import CoinSlots from './CoinSlots.js'
 import Buttons from './Items.js'
 import Display from './Display.js'
 import ReturnCoinsButton from './ReturnCoinsButton.js'
 import MachineFactory from '../app/MachineFactory.js'
-const Items = require("../app/Items")
 import Inventory from '../app/Inventory.js'
-const createMachine = MachineFactory.createMachine
 import CoinReturn from './CoinReturn.js'
 import DispensedItem from './DispensedItem.js'
+const Items = require("../app/Items")
+const createMachine = MachineFactory.createMachine
+
 
 class Machine extends Component {
   componentWillMount(){
@@ -17,9 +17,14 @@ class Machine extends Component {
   Inventory.fill(newMachine,Items.candy)
   Inventory.fill(newMachine,Items.cola)
   Inventory.fill(newMachine,Items.chips)
-  this.state = {machine: newMachine}
+  this.setState({machine: newMachine})
   }
   render() {
+    // return (
+    //   <div className="Machine">
+    //    VENDING MACHINE
+    //    </div>
+    // )
     return (
       <div className="Machine">
        VENDING MACHINE
@@ -55,9 +60,6 @@ class Machine extends Component {
        }.bind(this)
      }
 
-ReactDOM.render(
-  <Machine />,
-  document.getElementById('root')
-);
+
 
 export default Machine;

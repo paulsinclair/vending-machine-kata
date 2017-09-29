@@ -1,7 +1,7 @@
 "use strict"
 const expect = require('chai').expect;
-const createMachine = require("../src/app/MachineFactory").createMachine;
-const Items = require("../src/app/Items")
+const createMachine = require("../app/MachineFactory").createMachine;
+const Items = require("../app/Items")
 
 var machine
 

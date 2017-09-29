@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Item from './Item.js'
-import { View } from 'react-native';
 
 class Buttons extends Component {
 render(){
@@ -17,9 +16,7 @@ items.forEach(function(product){
 })
 return(
 <div className="Buttons">
- <View style={{flex: 1,flexDirection: 'column',justifyContent: 'center', alignItems: 'center',backgroundColor: 'blue',}}>
   {buttons}
- </View>
 </div>)
 }
 }

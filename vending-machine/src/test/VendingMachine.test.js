@@ -1,9 +1,9 @@
 "use strict"
 const expect = require('chai').expect;
 
-const Items = require("../src/app/Items")
-const VendingMachine = require("../src/app/VendingMachine");
-const updateDisplay = require("../src/app/VendingDisplay").updateDisplay
+const Items = require("../app/Items")
+const VendingMachine = require("../app/VendingMachine");
+const updateDisplay = require("../app/VendingDisplay").updateDisplay
 var machine = {}
 
  describe('Vending Machine',() => {
@@ -151,4 +151,3 @@ it("Dispenses Candy when the Candy button is pressed and there is $0.65 inserted
      })
    })
 })
-

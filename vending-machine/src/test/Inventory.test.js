@@ -1,8 +1,8 @@
 "use strict"
 const expect = require('chai').expect;
 
-const ItemInStock = require("../src/app/Inventory").itemInStock
-const Fill = require("../src/app/Inventory").fill
+const ItemInStock = require("../app/Inventory").itemInStock
+const Fill = require("../app/Inventory").fill
 
 const ITEM = {name: "Item Name", price: 0.00}
 

@@ -2,8 +2,8 @@
 
 const expect = require("Chai").expect;
 
-const Display = require("../src/app/VendingDisplay")
-var machine = require("../src/app/VendingMachine")
+const Display = require("../app/VendingDisplay")
+var machine = require("../app/VendingMachine")
 
 describe('Display', () => {
   var item

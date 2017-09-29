@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import { View } from 'react-native';
+// import { View } from 'react-native';
 
 import CoinSlot from './CoinSlot.js'
 
 class CoinSlots extends Component {
 componentWillMount(){
-this.state = {coinReturn: this.props.coinReturn}
+this.setState ({coinReturn: this.props.coinReturn})
 }
  render(){
    var coins = this.props.coins || []
@@ -19,9 +19,7 @@ this.state = {coinReturn: this.props.coinReturn}
    })
    return (
     <div className="CoinSlots">
-     <View style={{flex: 1,flexDirection: 'row',justifyContent: 'center', alignItems: 'center',}}>
       {slots}
-     </View>
     </div>
    )}
 }

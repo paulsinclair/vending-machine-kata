@@ -4,8 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const expect = require('chai').expect;
-const Items = require("../src/app/Items");
-const VendingMachine = require("../src/app/VendingMachine");
+const Items = require("../app/Items");
+const VendingMachine = require("../app/VendingMachine");
 var machine = {};
 
 
