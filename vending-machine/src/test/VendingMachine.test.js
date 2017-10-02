@@ -47,7 +47,7 @@ var machine = {}
   describe("when given an inValid coin", () => {
    it("Does not update total",()=>{
    VendingMachine.insertCoin("Penny",machine);
-  expect (VendingMachine.display).to.equal("INSERT COINS")
+  expect (machine.display).to.equal("INSERT COINS")
 })
 it("Puts the coin in the reject tray",()=>{
    machine.coinReturn = ["Yen"];

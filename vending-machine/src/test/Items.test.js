@@ -1,8 +1,5 @@
 "use strict"
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 const expect = require('chai').expect;
 const Items = require("../app/Items");
 const VendingMachine = require("../app/VendingMachine");

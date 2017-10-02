@@ -16,7 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "mocha-test": "mocha",
+    "mocha-test": "mocha ./src/test/**.test.js",
     "eject": "react-scripts eject"
   }
 }
