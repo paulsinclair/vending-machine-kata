@@ -5,7 +5,7 @@ class DispensedItem extends Component{
    let src = this.props.src || 'empty.png'
   //  let alt = this.props.alt || 'empty.png'
    return(
-       <img style={{width: 50, height: 50}} src={require('./' + src)} alt=''/>
+       <img style={{width: 50, height: 50}} src={require('../' + src)} alt=''/>
       )
  }
 }
