@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 
 class DispensedItem extends Component{
   render(){
-   let src = this.props.src || 'empty.png'
-  //  let alt = this.props.alt || 'empty.png'
+   let src = this.props.src
    return(
        <img style={{width: 50, height: 50}} src={require('../' + src)} alt=''/>
       )
